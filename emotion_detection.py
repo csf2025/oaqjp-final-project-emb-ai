@@ -15,10 +15,20 @@ def emotion_detector(text_to_analyze):
     joy_score = emotions.get('joy')
     sadness_score = emotions.get('sadness')
 
-    formatted_resonse = {'anger': anger_score,
+    formatted_response = {'anger': anger_score,
     'disgust': disgust_score,
     'fear': fear_score,
     'joy': joy_score,
     'sadness': sadness_score}
+
+    max_score = 0.0
+    max_key = ''
+
+    for key, value in formatted_response.items():
+        if value > max_score:
+            max_key = key
+            max_score = value
     
-    return formatted_resonse
+    formatted_response['dominant_emotion'] = max_key
+    
+    return formatted_response
